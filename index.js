@@ -20,7 +20,7 @@ class Badge {
 
 class Project {
     
-    constructor(name, type, logo, background, short, badges, href) {
+    constructor(name, type, logo, background, short, badges, href, slides) {
 
         this.name = name;
         this.logo = logo;
@@ -40,7 +40,7 @@ class Project {
             }
 
             let html = `
-                <a href="${href}" alt={} class="project card">
+                <a ${href != null ? `href="${href}"` : ""} key="${name}" class="project card">
                     <div class="thumb" style="height: 200px; background-image: url('${background}')">
                         <div>
                             <div style="display: inline-flex; margin-right: 4px; gap:8px;">
@@ -58,6 +58,12 @@ class Project {
                 </a>`;
 
             $(holder).append(html);
+
+            if(href == null && slides != null) {
+                $(`[key=${name}]`).on("click", () => {
+                    openProjectModal(name, slides)
+                })
+            }
         }
     }
 }
@@ -76,15 +82,30 @@ var projects = [
     new Project("Crawl", 4, "images/projects/crawl-logo.png", "images/projects/crawl-bg.png", 
     "Game about crawling in tight cave spaces, taking photos of \"accidents\", and defending yourself from a monster.",
     [new Badge("Unity Engine", "white", "black"), new Badge("Itch.io", "#f25959", "white")], "https://sole-rift.itch.io/crawl"),
-    
+
     new Project("Cortis", 3, "images/projects/cortis-logo.png", "images/projects/cortis-bg.bmp", 
     "Rogue-lite, tower defense game, where you drop modules from above to build a space-station that fights waves of enemies.",
-    [new Badge("Unity Engine", "white", "black")]),
+    [new Badge("Unity Engine", "white", "black")], null, ["<img src='images/screenshots/cortis0.png'></img>", "<img src='images/screenshots/cortis1.png'></img>", "<img src='images/screenshots/cortis2.png'></img>"]),
 
     new Project("Blaster Royale: Rewrite", 3, "images/projects/brr-logo.png", "images/projects/brr-bg.png", 
     "Gamemode, in which last player standing wins. From time-to-time, a scan begins that shows other players positions.",
     [new Badge("Garry's Mod Gamemode", "white", "black")], "https://steamcommunity.com/sharedfiles/filedetails/?id=2228940250")
 ];
+
+let slide;
+
+function openProjectModal(title, slides) {
+    var myModal = $("#project_modal");
+
+    $("#project_title").text(title);
+
+    for(let el of slides) {
+        slide.add(`${el}`)
+    }
+
+    myModal.show();
+}
+
 
 function initializeProjects() {
     let holder = $(".project-holder")
@@ -96,4 +117,10 @@ function initializeProjects() {
 
 $(document).ready(() => {
     initializeProjects();
+    slide = new Splide( '.splide' ).mount();
+
+    $(".modal_close").on("click", () => {
+        var myModal = $("#project_modal");
+        myModal.hide();
+    })
 })
