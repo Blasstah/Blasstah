@@ -77,11 +77,9 @@ var projects = [
     "Game about crawling in tight cave spaces, taking photos of \"accidents\", and defending yourself from a monster.",
     [new Badge("Unity Engine", "white", "black"), new Badge("Itch.io", "#f25959", "white")], "https://sole-rift.itch.io/crawl"),
     
-    /*
     new Project("Cortis", 3, "images/projects/cortis-logo.png", "images/projects/cortis-bg.bmp", 
     "Rogue-lite, tower defense game, where you drop modules from above to build a space-station that fights waves of enemies.",
     [new Badge("Unity Engine", "white", "black")]),
-    */
 
     new Project("Blaster Royale: Rewrite", 3, "images/projects/brr-logo.png", "images/projects/brr-bg.png", 
     "Gamemode, in which last player standing wins. From time-to-time, a scan begins that shows other players positions.",
