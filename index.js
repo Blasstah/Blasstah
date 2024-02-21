@@ -99,8 +99,10 @@ function openProjectModal(title, slides) {
 
     $("#project_title").text(title);
 
+    slide.remove('.slide');
+
     for(let el of slides) {
-        slide.add(`${el}`)
+        slide.add(`<li class="slide">${el}</li>`)
     }
 
     myModal.show();
