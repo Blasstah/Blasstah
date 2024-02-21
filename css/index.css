@@ -1,0 +1,74 @@
+.avatar {
+    border-radius: 60px;
+}
+
+.project {
+    box-shadow: 0px 0px black;
+
+    transition: transform .1s ease-out, box-shadow .1s ease-out;
+
+    overflow: hidden;
+
+    width: 24.6%;
+
+    text-decoration: none;
+}
+
+.project:hover {
+    transform: scale(1.02);
+
+    box-shadow: var(--bs-box-shadow) !important;
+
+    cursor: pointer;
+}
+
+.project > .thumb > div {
+    height: 50%;
+}
+
+
+.project > .thumb > div:first-child {
+    padding: 2px;
+}
+
+.project > .thumb > div:nth-child(2) {
+    display: flex;
+}
+
+.project > .thumb {
+    background-size: cover;
+    transition: transform .1s ease-out, box-shadow .1s ease-out;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.project > .thumb .logo {
+    transition: transform .1s ease-out, box-shadow .1s ease-out;
+    align-self: flex-end;
+
+    cursor: pointer;
+}
+
+.project:hover > .thumb .logo {
+    transform: scale(1.01);
+
+    cursor: pointer;
+}
+
+/* RESPONSIVENESS */
+
+@media screen and (max-width: 650px) {
+    header p {
+        width: 75% !important;
+    }
+
+    .project-holder {
+        flex-direction: column;
+    }
+
+    .project {
+        width: 100%;
+    }
+}
